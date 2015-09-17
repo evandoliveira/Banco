@@ -1,38 +1,111 @@
 package modelo;
+
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Conta {
+import util.UtilData;
+
+public class Conta extends EntidadeBanco {
+
+	private Long identificador;
 
 	private int numero;
+
 	private String titular;
-	private double saldo;
+
 	private Date dataAbertura;
 
-	public Conta(){
-		dataAbertura = new Date();
+	private double saldo;
+
+	private ArrayList movimento;
+
+	private Conta caixaBanco;
+
+	// construtor padrão da classe Conta que define a data de criação da conta e inicializa o array de transacao
+	public Conta() {
+
+		dataAbertura = UtilData.data();
+		movimento = new ArrayList();
 	}
-	public int getNumero(){
+
+	// construtor com dois parametros
+	public Conta( String nome, int nconta ) {
+
+		this();
+		numero = nconta;
+		titular = nome;
+		saldo = 0.0; // Conta em reais e zerada
+	}
+
+	@Override
+	public Long getIdentificador() {
+
+		return identificador;
+	}
+
+	public void setIdentificador(Long identificador) {
+
+		this.identificador = identificador;
+	}
+
+	public int getNumero() {
+
 		return numero;
 	}
-	public void setNumero(int numero){
+
+	public void setNumero(int numero) {
+
 		this.numero = numero;
 	}
-	public String getTitular(){
+
+	public String getTitular() {
+
 		return titular;
 	}
-	public void setTitular(String titular){
+
+	public void setTitular(String titular) {
+
 		this.titular = titular;
 	}
-	public double getSaldo(){
-		return saldo;
-	}
-	public void setSaldo(double saldo){
-		this.saldo = saldo;
-	}
-	public Date getDataAbertura(){
+
+	public Date getDataAbertura() {
+
 		return dataAbertura;
 	}
-	public void setDataAbertura(Date dataAbertura){
+
+	public void setDataAbertura(Date dataAbertura) {
+
 		this.dataAbertura = dataAbertura;
 	}
+
+	public double getSaldo() {
+
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+
+		this.saldo = saldo;
+	}
+
+	public ArrayList getMovimento() {
+
+		return movimento;
+	}
+
+	public void setMovimento(ArrayList movimento) {
+
+		this.movimento = movimento;
+	}
+
+	public Conta getCaixaBanco() {
+
+		return caixaBanco;
+	}
+
+	public void setCaixaBanco(Conta caixaBanco) {
+
+		this.caixaBanco = caixaBanco;
+	}
+
 }
