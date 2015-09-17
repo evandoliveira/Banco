@@ -19,8 +19,6 @@ public class Conta extends EntidadeBanco {
 
 	private ArrayList movimento;
 
-	private Conta caixaBanco;
-
 	// construtor padrão da classe Conta que define a data de criação da conta e inicializa o array de transacao
 	public Conta() {
 
@@ -96,16 +94,6 @@ public class Conta extends EntidadeBanco {
 	public void setMovimento(ArrayList movimento) {
 
 		this.movimento = movimento;
-	}
-
-	public Conta getCaixaBanco() {
-
-		return caixaBanco;
-	}
-
-	public void setCaixaBanco(Conta caixaBanco) {
-
-		this.caixaBanco = caixaBanco;
 	}
 
 }

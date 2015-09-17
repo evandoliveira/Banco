@@ -4,7 +4,9 @@ import java.util.Date;
 
 import util.UtilData;
 
-public class Transacao {
+public class Transacao extends EntidadeBanco {
+
+	private Long identificador;
 
 	private Date data;
 
@@ -26,6 +28,18 @@ public class Transacao {
 		this.valor = valor;
 		this.descricao = descricao;
 		this.tipoTransacao = tipoTransacao;
+	}
+	
+	
+	@Override
+	public Long getIdentificador() {
+
+		return identificador;
+	}
+
+	public void setIdentificador(Long identificador) {
+
+		this.identificador = identificador;
 	}
 
 	public void setContaCredito(Conta contaCredito) {

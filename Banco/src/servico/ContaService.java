@@ -15,22 +15,28 @@ public class ContaService {
 		this.historicoTransacao(null, contaDestino, valor, "deposito na conta " + contaDestino.getNumero(), EnumTipoTransacao.DEPOSITO);
 	}
 
-	public void sacar(Conta contaSaque, double valor) {
+	public void sacar(Conta contaSaque, double valor) throws SaldoInsuficienteException {
 
-		// debita na conta e credita no caixa
-		contaSaque.setSaldo(contaSaque.getSaldo() - valor);
+		if (contaSaque.getSaldo() - valor >= 0) {
+			// debita na conta e credita no caixa
+			contaSaque.setSaldo(contaSaque.getSaldo() - valor);
 
-		this.historicoTransacao(null, contaSaque, valor, "saque na conta " + contaSaque.getNumero(), EnumTipoTransacao.DEPOSITO);
+			this.historicoTransacao(null, contaSaque, valor, "saque na conta " + contaSaque.getNumero(), EnumTipoTransacao.DEPOSITO);
+
+		} else {
+			
+			throw new SaldoInsuficienteException();
+		}
 	}
 
 	// método sobrecarregado, transfere dados desta conta (this) para outra
-	public boolean transferir(Conta contaSaque, double valor, Conta contaDestino) {
+	public boolean transferir(Conta contaSaque, double valor, Conta contaDestino) throws SaldoInsuficienteException {
 
 		return transferir(contaSaque, valor, contaDestino, "transferencia para conta " + contaDestino.getNumero());
 	}
 
 	// método sobrecarregado, transfere valor desta conta (this) para outra conta e registra a transação
-	public boolean transferir(Conta contaSaque, double valor, Conta contaDestino, String descr) {
+	public boolean transferir(Conta contaSaque, double valor, Conta contaDestino, String descr) throws SaldoInsuficienteException {
 
 		if (contaSaque.getSaldo() - valor >= 0) {
 
@@ -44,7 +50,7 @@ public class ContaService {
 
 		} else {
 
-			return false;
+			throw new SaldoInsuficienteException();
 		}
 
 	}
@@ -69,11 +75,11 @@ public class ContaService {
 		Transacao transacao = new Transacao(UtilData.data(), contaDebito, contaCredito, valor, descr, tipoTransacao);
 
 		if (contaDebito != null) {
-			
+
 			contaDebito.getMovimento().add(transacao);
-			
+
 		}
-		
+
 		contaCredito.getMovimento().add(transacao);
 	}
 
