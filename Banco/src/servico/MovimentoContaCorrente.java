@@ -29,6 +29,9 @@ public class MovimentoContaCorrente {
 			System.out.println(e.getMessage());
 		}
 
+		System.out.println("");
+		System.out.println("Agora sim, o saldo é suficiente");
+
 		ExtratoTXT movimento = new ExtratoTXT(correntista1);
 		System.out.println(movimento.formatar());
 	}

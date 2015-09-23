@@ -50,7 +50,7 @@ public class ContaService {
 
 		} else {
 
-			throw new SaldoInsuficienteException();
+			throw new SaldoInsuficienteException("Tem que ter mais dinheiro, senão não dá!");
 		}
 
 	}

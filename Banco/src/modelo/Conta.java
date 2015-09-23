@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import util.UtilData;
@@ -11,13 +12,15 @@ public class Conta extends EntidadeBanco {
 
 	private int numero;
 
-	private String titular;
-
 	private Date dataAbertura;
 
 	private double saldo;
+	
+	private Cliente titular;
 
-	private ArrayList movimento;
+	private Collection<Transacao> transacoes;
+	
+	private Agencia agencia;
 
 	// construtor padrão da classe Conta que define a data de criação da conta e inicializa o array de transacao
 	public Conta() {
@@ -27,7 +30,7 @@ public class Conta extends EntidadeBanco {
 	}
 
 	// construtor com dois parametros
-	public Conta( String nome, int nconta ) {
+	public Conta( Cliente nome, int nconta ) {
 
 		this();
 		numero = nconta;
@@ -56,12 +59,12 @@ public class Conta extends EntidadeBanco {
 		this.numero = numero;
 	}
 
-	public String getTitular() {
+	public Cliente getTitular() {
 
 		return titular;
 	}
 
-	public void setTitular(String titular) {
+	public void setTitular(Cliente titular) {
 
 		this.titular = titular;
 	}
